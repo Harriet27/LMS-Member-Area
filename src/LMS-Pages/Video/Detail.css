@@ -32,10 +32,12 @@
     font-family: 'Rubik', sans-serif;
     font-size: medium;
     margin-right: 15px;
+    display: flex;
+    align-items: center;
 }
 .views-icon {
     height: 17.5px;
-    margin-right: 5px;
+    margin-right: 7.5px;
 }
 .video-creation {
     font-family: 'Rubik', sans-serif;

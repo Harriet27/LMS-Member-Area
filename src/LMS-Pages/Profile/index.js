@@ -8,16 +8,43 @@ const LMSProfile = () => {
         document.title = 'LMS Profile';
     });
 
-    const picture = 'https://i2.wp.com/www.orphicpixel.com/wp-content/uploads/2013/08/minimal-wallpaper-01.png?fit=550%2C344&ssl=1';
+    const pictureList = [
+        {
+            img: 'https://i2.wp.com/www.orphicpixel.com/wp-content/uploads/2013/08/minimal-wallpaper-01.png?fit=550%2C344&ssl=1',
+            active: false,
+        },
+        {
+            img: 'https://i2.wp.com/www.orphicpixel.com/wp-content/uploads/2013/08/minimal-wallpaper-01.png?fit=550%2C344&ssl=1',
+            active: false,
+        },
+        {
+            img: 'https://i2.wp.com/www.orphicpixel.com/wp-content/uploads/2013/08/minimal-wallpaper-01.png?fit=550%2C344&ssl=1',
+            active: true,
+        },
+        {
+            img: 'https://i2.wp.com/www.orphicpixel.com/wp-content/uploads/2013/08/minimal-wallpaper-01.png?fit=550%2C344&ssl=1',
+            active: false,
+        },
+        {
+            img: 'https://i2.wp.com/www.orphicpixel.com/wp-content/uploads/2013/08/minimal-wallpaper-01.png?fit=550%2C344&ssl=1',
+            active: false,
+        },
+    ];
 
     const renderPictures = () => {
-        return [0,1,2,3,4].map(() => {
+        return pictureList.map((val,index) => {
             return (
-                <div>
+                <div key={index}>
                     <img 
-                        src={picture} 
+                        src={val.img} 
                         alt='wallpapers' 
-                        className='lmsprofile-picture-image' 
+                        className={
+                            val.active
+                            ?
+                            'lmsprofile-picture-image-active'
+                            :
+                            'lmsprofile-picture-image'
+                        } 
                     />
                 </div>
             );
@@ -94,7 +121,7 @@ const LMSProfile = () => {
     return (
         <div className='root'>
             {/* PROFILE CHECK */}
-            <Profile complete={false} />
+            <Profile complete={true} />
 
             {/* DIVIDER */}
             <div className='divider' />

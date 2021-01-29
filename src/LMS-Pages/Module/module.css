@@ -21,6 +21,15 @@ u {
     font-size: medium;
 }
 
+/* ART */
+.module-art-div {
+    padding: 15px 35px;
+}
+.module-art {
+    width: 100%;
+}
+/* ART */
+
 /* FILTER */
 .filter-container {
     padding: 10px 35px 30px 35px;
@@ -51,6 +60,13 @@ u {
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+}
+.action-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+.action-section::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 .action-card {
     box-shadow: 0 0 5px 1.75px #E6E6E6;

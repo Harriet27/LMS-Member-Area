@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getVideo } from '../../Redux/Actions/contentAction';
 import views from '../../Assets/Images/views.svg';
 import likethumb from '../../Assets/Images/like.svg';
+import likedthumb from '../../Assets/Images/liked.svg';
 import share from '../../Assets/Images/share.svg';
 import later from '../../Assets/Images/later.svg';
 import save from '../../Assets/Images/save.svg';
+import saved from '../../Assets/Images/saved.svg';
 import other from '../../Assets/Images/other.svg';
 import playNext from '../../Assets/Images/play-next.svg';
 import { Comment, Tooltip, Avatar } from 'antd';
@@ -23,6 +25,22 @@ const Detail = () => {
 
     const videoList = useSelector((state) => state.content.videoList);
 
+    const [likedState, setLikedState] = useState(false);
+    const toggleLike = () => {
+        setLikedState({
+            likedState: !likedState,
+        });
+    };
+    const likeIcon = likedState ? likedthumb : likethumb;
+
+    const [savedState, setSavedState] = useState(false);
+    const toggleSave = () => {
+        setSavedState({
+            savedState: !savedState,
+        });
+    };
+    const saveIcon = savedState ? saved : save;
+
     const renderVideo = () => {
         return videoList.slice(0,1).map((val,index) => {
             return (
@@ -37,7 +55,7 @@ const Detail = () => {
                         <div style={{display:'flex'}}>
                             <div className='video-views'>
                                 <img src={views} alt='views' className='views-icon' />
-                                140.191.746 views
+                                <div>140.191.746 views</div>
                             </div>
                             ●
                             <div className='video-creation'>
@@ -47,7 +65,12 @@ const Detail = () => {
                     </div>
                     <div className='action-container'>
                         <div className='action-group'>
-                            <img src={likethumb} alt='like' style={{height:'30px'}} />
+                            <img 
+                                src={likeIcon} 
+                                alt='like' 
+                                style={{height:'30px'}} 
+                                onClick={toggleLike} 
+                            />
                             <div className='action-text'>
                                 Like
                             </div>
@@ -65,7 +88,12 @@ const Detail = () => {
                             </div>
                         </div>
                         <div className='action-group'>
-                            <img src={save} alt='save' style={{height:'30px'}} />
+                            <img 
+                                src={saveIcon} 
+                                alt='save' 
+                                style={{height:'30px'}} 
+                                onClick={toggleSave} 
+                            />
                             <div className='action-text'>
                                 Save
                             </div>
@@ -85,7 +113,7 @@ const Detail = () => {
     const videoImg = 'https://wallpaperboat.com/wp-content/uploads/2020/04/red-aesthetic-wallpaper-1920x1080-10.jpg';
 
     const renderPlaylist = () => {
-        return [0,1,2,3].map((val,index) => {
+        return [0,1,2,3,4].map((val,index) => {
             return (
                 <div className={index === 0 ? 'video-container active' : 'video-container'}>
                     <img src={videoImg} alt='video' className='video-playlist' />

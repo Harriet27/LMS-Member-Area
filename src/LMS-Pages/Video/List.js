@@ -1,30 +1,77 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import TopicSection from '../../Components/TopicSection';
+import { getVideo } from '../../Redux/Actions/contentAction';
+import moment from 'moment';
 import './List.css';
 
+// const Terbaru = () => {
+//     return [0,1,2,3,4,5,6,7,8,9].map(() => {
+//         return (
+//             <div className='videos-texts'>
+//                 <img src='https://www.visme.co/wp-content/uploads/2020/02/i_Adventure-Youtube-Video-Cover_full.jpg' alt='live' className='videos-live' />
+//                 <div className='videos-desc'>
+//                     <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
+//                     <div className='videos-summary'>
+//                         <div className='videos-title'>
+//                             <b>This is the title for the video</b>
+//                         </div>
+//                         <div className='videos-mentor-name'>
+//                             mentor name here
+//                         </div>
+//                         <div className='videos-countdown'>
+//                             3 days ago
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         );
+//     });
+// };
+
 const Terbaru = () => {
-    return [0,1,2,3,4,5,6,7,8,9].map(() => {
-        return (
-            <div className='videos-texts'>
-                <img src='https://www.visme.co/wp-content/uploads/2020/02/i_Adventure-Youtube-Video-Cover_full.jpg' alt='live' className='videos-live' />
-                <div className='videos-desc'>
-                    <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                    <div className='videos-summary'>
-                        <div className='videos-title'>
-                            <b>This is the title for the video</b>
-                        </div>
-                        <div className='videos-mentor-name'>
-                            mentor name here
-                        </div>
-                        <div className='videos-countdown'>
-                            3 days ago
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getVideo());
+    }, [dispatch]);
+
+    const videoList = useSelector(({ content }) => content.videoList);
+
+    const renderVideos = () => {
+        return videoList.map((val,index) => {
+            let time = val.created_at;
+            let date = time.substring(0,10).split('-').join('');
+            let ago = moment(date, "YYYYMMDD").fromNow();
+            return (
+                <div key={index} className='videos-texts'>
+                    <img src='https://www.visme.co/wp-content/uploads/2020/02/i_Adventure-Youtube-Video-Cover_full.jpg' alt='live' className='videos-live' />
+                    <div className='videos-desc'>
+                        <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
+                        <div className='videos-summary'>
+                            <div className='videos-title'>
+                                {/* <b>This is the title for the video</b> */}
+                                <b>{val.filename}</b>
+                            </div>
+                            <div className='videos-mentor-name'>
+                                mentor name here
+                            </div>
+                            <div className='videos-countdown'>
+                                {ago}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        );
-    });
+            );
+        });
+    };
+
+    return (
+        <div>
+            {renderVideos()}
+        </div>
+    );
 };
 
 const Rekomendasi = () => {
@@ -99,7 +146,7 @@ const SesuaiTopik = () => {
     });
 };
 
-const filterList = [
+const tabList = [
     {
         id: 1,
         title: 'Terbaru',
@@ -156,7 +203,7 @@ const List = () => {
 
             {/* FILTER */}
             <div className='filter-container'>
-                {filterList.map(({ id, title }) => 
+                {tabList.map(({ id, title }) => 
                     <FilterTab
                         key={title}
                         title={title}
@@ -169,7 +216,7 @@ const List = () => {
             {/* LISTS */}
             <div className='videos-section'>
                 <Link to='/lms-video/detail'>
-                    {filterList.map(({ id, content }) => {
+                    {tabList.map(({ id, content }) => {
                         return active === id 
                         ? 
                         content 

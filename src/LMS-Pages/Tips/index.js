@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
@@ -8,11 +8,15 @@ const author = 'https://i.pinimg.com/originals/e0/bc/5c/e0bc5cd4f1d7cff7116a3254
 const ago = moment().utc('2019-12-04 12:00:24').local().startOf('seconds').fromNow();
 const tick = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png';
 
-const renderTips = () => {
+const Terbaru = () => {
     return [0,1,2,3,4].map((val,index) => {
         return (
             <div key={index} className='tips-group'>
-                <img src='https://d1csarkz8obe9u.cloudfront.net/posterpreviews/covid-19-corona-virus-prevention-poster-design-template-7eafeb97181606ad03bbe2e56324593c_screen.jpg?ts=1585635679' alt='book on shipping' className='tips-book' />
+                <img 
+                    src='https://static-cse.canva.com/blob/142565/Blue-Orange-and-Yellow-Cool-Memoir_Inspirational-Book-Cover.jpg' 
+                    alt='book on shipping' 
+                    className='tips-book' 
+                />
                 <div className='tips-desc'>
                     <div className='tips-detail'>
                         <b>To Kill a Mockingbird</b>
@@ -40,58 +44,156 @@ const renderTips = () => {
     });
 };
 
-const filterList = [
+const Rekomendasi = () => {
+    return [0,1,2,3,4].map((val,index) => {
+        return (
+            <div key={index} className='tips-group'>
+                <img 
+                    src='https://static-cse.canva.com/blob/142533/Red-and-Beige-Cute-Illustration-Young-Adult-Book-Cover.jpg' 
+                    alt='book on shipping' 
+                    className='tips-book' 
+                />
+                <div className='tips-desc'>
+                    <div className='tips-detail'>
+                        <b>To Kill a Mockingbird</b>
+                        {
+                            index === 0
+                            ?
+                            <img src={tick} alt='tick' className='tips-checkmark' />
+                            :
+                            null
+                        }
+                        <br/> it is set in the mid-1930s in the small town of Maycomb, Alabama. It is narrated by Scout Finch, a six-year-old tomboy who lives with her lawyer father Atticus and her ten-year-old brother Jem, trying to make a scene.
+                    </div>
+                    <div className='tips-poin'>
+                        <b>+3 Poin</b>
+                    </div>
+                    <div className='author-details'>
+                        <img src={author} alt='author' className='author-profile' />
+                        <div className='author-name-time'>
+                            John Doe ● {ago} ● 5 min read
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    });
+};
+
+const TelahDibaca = () => {
+    return [0,1,2,3,4].map((val,index) => {
+        return (
+            <div key={index} className='tips-group'>
+                <img 
+                    src='https://static-cse.canva.com/blob/142564/Colorful-Illustration-Young-Adult-Book-Cover.jpg' 
+                    alt='book on shipping' 
+                    className='tips-book' 
+                />
+                <div className='tips-desc'>
+                    <div className='tips-detail'>
+                        <b>To Kill a Mockingbird</b>
+                        {
+                            index === 0
+                            ?
+                            <img src={tick} alt='tick' className='tips-checkmark' />
+                            :
+                            null
+                        }
+                        <br/> it is set in the mid-1930s in the small town of Maycomb, Alabama. It is narrated by Scout Finch, a six-year-old tomboy who lives with her lawyer father Atticus and her ten-year-old brother Jem, trying to make a scene.
+                    </div>
+                    <div className='tips-poin'>
+                        <b>+3 Poin</b>
+                    </div>
+                    <div className='author-details'>
+                        <img src={author} alt='author' className='author-profile' />
+                        <div className='author-name-time'>
+                            John Doe ● {ago} ● 5 min read
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    });
+};
+
+const SesuaiTopik = () => {
+    return [0,1,2,3,4].map((val,index) => {
+        return (
+            <div key={index} className='tips-group'>
+                <img 
+                    src='https://assets-1.placeit.net/smart_templates/991156c4737dbc9fcf89acfabe9034a0/assets/sa31iylakfbx922u5mn901a16dym9pxk.jpg' 
+                    alt='book on shipping' 
+                    className='tips-book' 
+                />
+                <div className='tips-desc'>
+                    <div className='tips-detail'>
+                        <b>To Kill a Mockingbird</b>
+                        {
+                            index === 0
+                            ?
+                            <img src={tick} alt='tick' className='tips-checkmark' />
+                            :
+                            null
+                        }
+                        <br/> it is set in the mid-1930s in the small town of Maycomb, Alabama. It is narrated by Scout Finch, a six-year-old tomboy who lives with her lawyer father Atticus and her ten-year-old brother Jem, trying to make a scene.
+                    </div>
+                    <div className='tips-poin'>
+                        <b>+3 Poin</b>
+                    </div>
+                    <div className='author-details'>
+                        <img src={author} alt='author' className='author-profile' />
+                        <div className='author-name-time'>
+                            John Doe ● {ago} ● 5 min read
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    });
+};
+
+const tabList = [
     {
-        filter: 'Terbaru',
-        active: true,
+        id: 1,
+        title: 'Terbaru',
+        content: <Terbaru />,
     },
     {
-        filter: 'Rekomendasi',
-        active: false,
+        id: 2,
+        title: 'Rekomendasi',
+        content: <Rekomendasi />,
     },
     {
-        filter: 'Telah Dibaca',
-        active: false,
+        id: 3,
+        title: 'Telah Dibaca',
+        content: <TelahDibaca />,
     },
     {
-        filter: 'Sesuai Topik',
-        active: false,
+        id: 4,
+        title: 'Sesuai Topik',
+        content: <SesuaiTopik />,
     },
 ];
+
+const FilterTab = ({
+    title = "",
+    onItemClicked = () => console.error('You passed no action'),
+    isActive = false,
+}) => {
+    return (
+        <div 
+            className={isActive ? `filter choosen` : `filter`}
+            onClick={onItemClicked}
+        >
+            {title}
+        </div>
+    );
+};
 
 const Tips = () => {
     useEffect(() => {
         document.title = 'LMS Tips';
     });
-
-    // const filterList = [
-    //     {
-    //         filter: 'Terbaru',
-    //         active: true,
-    //     },
-    //     {
-    //         filter: 'Rekomendasi',
-    //         active: false,
-    //     },
-    //     {
-    //         filter: 'Telah Dibaca',
-    //         active: false,
-    //     },
-    //     {
-    //         filter: 'Sesuai Topik',
-    //         active: false,
-    //     },
-    // ];
-
-    const renderFilter = () => {
-        return filterList.map((val,index) => {
-            return (
-                <div className={val.active ? `filter choosen` : `filter`}>
-                    {val.filter}
-                </div>
-            );
-        });
-    };
 
     const shippingBook = 'https://static-cse.canva.com/blob/142538/Purple-and-Red-Leaves-Illustration-Childrens-Book-Cover.jpg';
 
@@ -115,42 +217,7 @@ const Tips = () => {
         );
     };
 
-    const tipsImg = 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/covid-19-corona-virus-prevention-poster-design-template-7eafeb97181606ad03bbe2e56324593c_screen.jpg?ts=1585635679';
-    const author = 'https://i.pinimg.com/originals/e0/bc/5c/e0bc5cd4f1d7cff7116a325490b3010d.png';
-    const ago = moment().utc('2019-12-04 12:00:24').local().startOf('seconds').fromNow();
-    const tick = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png';
-
-    const renderTips = () => {
-        return [0,1,2,3,4].map((val,index) => {
-            return (
-                <div key={index} className='tips-group'>
-                    <img src={tipsImg} alt='book on shipping' className='tips-book' />
-                    <div className='tips-desc'>
-                        <div className='tips-detail'>
-                            <b>To Kill a Mockingbird</b>
-                            {
-                                index === 0
-                                ?
-                                <img src={tick} alt='tick' className='tips-checkmark' />
-                                :
-                                null
-                            }
-                            <br/> it is set in the mid-1930s in the small town of Maycomb, Alabama. It is narrated by Scout Finch, a six-year-old tomboy who lives with her lawyer father Atticus and her ten-year-old brother Jem, trying to make a scene.
-                        </div>
-                        <div className='tips-poin'>
-                            <b>+3 Poin</b>
-                        </div>
-                        <div className='author-details'>
-                            <img src={author} alt='author' className='author-profile' />
-                            <div className='author-name-time'>
-                                John Doe ● {ago} ● 5 min read
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
-    };
+    const [active, setActive] = useState(1);
 
     return (
         <div className='root'>
@@ -185,10 +252,23 @@ const Tips = () => {
                     Tips Untuk Kamu
                 </div>
                 <div className='filter-container'>
-                    {renderFilter()}
+                    {tabList.map(({ id, title }) => 
+                        <FilterTab 
+                            key={title}
+                            title={title}
+                            onItemClicked={() => setActive(id)}
+                            isActive={active === id}
+                        />
+                    )}
                 </div>
                 <div className='tips-list'>
-                    {renderTips()}
+                    {tabList.map(({ id, content }) => {
+                        return active === id
+                        ?
+                        content
+                        :
+                        null
+                    })}
                 </div>
             </div>
         </div>

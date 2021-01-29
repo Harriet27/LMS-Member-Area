@@ -59,7 +59,7 @@ const TopicSection = (props) => {
     const renderSection = () => {
         return sectionTopic.map((val,index) => {
             return (
-                <a href={val.href}>
+                <a href={val.href} className='anchor'>
                     <div 
                         key={index} 
                         className={
