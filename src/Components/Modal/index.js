@@ -44,11 +44,59 @@ function Modal (props) {
                                 src={Logo}
                                 alt="laruno"
                             />
-                             <span style={{marginTop : 30}}>Business</span>
-                             <span>Career</span>
-                             <span>Finance</span>
-                             <span>Marketing</span>
-                             <span>Sales</span>
+                            <a 
+                                href="/lms-profile" 
+                                style={{margin:'25px 0px 0px 0px', textDecoration:'none'}}
+                            >
+                                <span style={{fontSize:'medium'}}>
+                                    Profile
+                                </span>
+                            </a>
+                            <a href="/lms-dashboard" >
+                                <span style={{fontSize:'medium'}}>
+                                    Dashboard
+                                </span>
+                            </a>
+                            <a href="/lms-home" >
+                                <span style={{fontSize:'medium'}}>
+                                    Home
+                                </span>
+                            </a>
+                            <a href="/lms-webinar" >
+                                <span style={{fontSize:'medium'}}>
+                                    Webinar
+                                </span>
+                            </a>
+                            <a href="/lms-video/list" >
+                                <span style={{fontSize:'medium'}}>
+                                    Video
+                                </span>
+                            </a>
+                            <a href="/lms-tips" >
+                                <span style={{fontSize:'medium'}}>
+                                    Tips
+                                </span>
+                            </a>
+                            <a href="/lms-module" >
+                                <span style={{fontSize:'medium'}}>
+                                    Module
+                                </span>
+                            </a>
+                            <a href="/lms-group" >
+                                <span style={{fontSize:'medium'}}>
+                                    Group
+                                </span>
+                            </a>
+                            <a href="/lms-bonus" >
+                                <span style={{fontSize:'medium'}}>
+                                    Bonus
+                                </span>
+                            </a>
+                            <a href="/lms-reseller" >
+                                <span style={{fontSize:'medium'}}>
+                                    Reseller
+                                </span>
+                            </a>
                         </div>
                         <CloseIcon
                             style={{ marginTop : 30 , cursor : "pointer"}}

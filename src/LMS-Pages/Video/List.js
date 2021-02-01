@@ -4,31 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import TopicSection from '../../Components/TopicSection';
 import { getVideo } from '../../Redux/Actions/contentAction';
 import moment from 'moment';
+import localization from 'moment/locale/id';
 import './List.css';
-
-// const Terbaru = () => {
-//     return [0,1,2,3,4,5,6,7,8,9].map(() => {
-//         return (
-//             <div className='videos-texts'>
-//                 <img src='https://www.visme.co/wp-content/uploads/2020/02/i_Adventure-Youtube-Video-Cover_full.jpg' alt='live' className='videos-live' />
-//                 <div className='videos-desc'>
-//                     <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-//                     <div className='videos-summary'>
-//                         <div className='videos-title'>
-//                             <b>This is the title for the video</b>
-//                         </div>
-//                         <div className='videos-mentor-name'>
-//                             mentor name here
-//                         </div>
-//                         <div className='videos-countdown'>
-//                             3 days ago
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         );
-//     });
-// };
 
 const Terbaru = () => {
     const dispatch = useDispatch();
@@ -38,6 +15,8 @@ const Terbaru = () => {
     }, [dispatch]);
 
     const videoList = useSelector(({ content }) => content.videoList);
+
+    moment.updateLocale('id', localization);
 
     const renderVideos = () => {
         return videoList.map((val,index) => {
@@ -51,7 +30,6 @@ const Terbaru = () => {
                         <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
                         <div className='videos-summary'>
                             <div className='videos-title'>
-                                {/* <b>This is the title for the video</b> */}
                                 <b>{val.filename}</b>
                             </div>
                             <div className='videos-mentor-name'>
@@ -75,75 +53,138 @@ const Terbaru = () => {
 };
 
 const Rekomendasi = () => {
-    return [0,1,2,3,4,5,6,7,8,9].map(() => {
-        return (
-            <div className='videos-texts'>
-                <img src='https://i.pinimg.com/564x/31/33/d0/3133d0bb864699786afd62f71022297e.jpg' alt='live' className='videos-live' />
-                <div className='videos-desc'>
-                    <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                    <div className='videos-summary'>
-                        <div className='videos-title'>
-                            <b>This is the title for the video</b>
-                        </div>
-                        <div className='videos-mentor-name'>
-                            mentor name here
-                        </div>
-                        <div className='videos-countdown'>
-                            3 days ago
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getVideo());
+    }, [dispatch]);
+
+    const videoList = useSelector(({ content }) => content.videoList);
+
+    moment.updateLocale('id', localization);
+
+    const renderVideos = () => {
+        return videoList.map((val,index) => {
+            let time = val.created_at;
+            let date = time.substring(0,10).split('-').join('');
+            let ago = moment(date, "YYYYMMDD").fromNow();
+            return (
+                <div key={index} className='videos-texts'>
+                    <img src='https://i.pinimg.com/564x/31/33/d0/3133d0bb864699786afd62f71022297e.jpg' alt='live' className='videos-live' />
+                    <div className='videos-desc'>
+                        <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
+                        <div className='videos-summary'>
+                            <div className='videos-title'>
+                                <b>{val.filename}</b>
+                            </div>
+                            <div className='videos-mentor-name'>
+                                mentor name here
+                            </div>
+                            <div className='videos-countdown'>
+                                {ago}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        );
-    });
+            );
+        });
+    };
+
+    return (
+        <div>
+            {renderVideos()}
+        </div>
+    );
 };
 
 const TelahDitonton = () => {
-    return [0,1,2,3,4,5,6,7,8,9].map(() => {
-        return (
-            <div className='videos-texts'>
-                <img src='https://cdn.wallpapersafari.com/88/67/ul5hCp.png' alt='live' className='videos-live' />
-                <div className='videos-desc'>
-                    <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                    <div className='videos-summary'>
-                        <div className='videos-title'>
-                            <b>This is the title for the video</b>
-                        </div>
-                        <div className='videos-mentor-name'>
-                            mentor name here
-                        </div>
-                        <div className='videos-countdown'>
-                            3 days ago
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getVideo());
+    }, [dispatch]);
+
+    const videoList = useSelector(({ content }) => content.videoList);
+
+    moment.updateLocale('id', localization);
+
+    const renderVideos = () => {
+        return videoList.map((val,index) => {
+            let time = val.created_at;
+            let date = time.substring(0,10).split('-').join('');
+            let ago = moment(date, "YYYYMMDD").fromNow();
+            return (
+                <div className='videos-texts'>
+                    <img src='https://cdn.wallpapersafari.com/88/67/ul5hCp.png' alt='live' className='videos-live' />
+                    <div className='videos-desc'>
+                        <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
+                        <div className='videos-summary'>
+                            <div className='videos-title'>
+                                <b>{val.filename}</b>
+                            </div>
+                            <div className='videos-mentor-name'>
+                                mentor name here
+                            </div>
+                            <div className='videos-countdown'>
+                                {ago}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        );
-    });
+            );
+        });
+    };
+
+    return (
+        <div>
+            {renderVideos()}
+        </div>
+    );
 };
 
 const SesuaiTopik = () => {
-    return [0,1,2,3,4,5,6,7,8,9].map(() => {
-        return (
-            <div className='videos-texts'>
-                <img src='https://wallpapercave.com/wp/1A9R2z9.jpg' alt='live' className='videos-live' />
-                <div className='videos-desc'>
-                    <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                    <div className='videos-summary'>
-                        <div className='videos-title'>
-                            <b>This is the title for the video</b>
-                        </div>
-                        <div className='videos-mentor-name'>
-                            mentor name here
-                        </div>
-                        <div className='videos-countdown'>
-                            3 days ago
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getVideo());
+    }, [dispatch]);
+
+    const videoList = useSelector(({ content }) => content.videoList);
+
+    moment.updateLocale('id', localization);
+
+    const renderVideos = () => {
+        return videoList.map((val,index) => {
+            let time = val.created_at;
+            let date = time.substring(0,10).split('-').join('');
+            let ago = moment(date, "YYYYMMDD").fromNow();
+            return (
+                <div className='videos-texts'>
+                    <img src='https://wallpapercave.com/wp/1A9R2z9.jpg' alt='live' className='videos-live' />
+                    <div className='videos-desc'>
+                        <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
+                        <div className='videos-summary'>
+                            <div className='videos-title'>
+                                <b>{val.filename}</b>
+                            </div>
+                            <div className='videos-mentor-name'>
+                                mentor name here
+                            </div>
+                            <div className='videos-countdown'>
+                                {ago}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        );
-    });
+            );
+        });
+    };
+
+    return (
+        <div>
+            {renderVideos()}
+        </div>
+    );
 };
 
 const tabList = [

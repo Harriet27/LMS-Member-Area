@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
-import './tips.css';
+import './TipsList.css';
 
 const author = 'https://i.pinimg.com/originals/e0/bc/5c/e0bc5cd4f1d7cff7116a325490b3010d.png';
 const ago = moment().utc('2019-12-04 12:00:24').local().startOf('seconds').fromNow();

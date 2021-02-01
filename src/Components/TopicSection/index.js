@@ -27,12 +27,12 @@ const TopicSection = (props) => {
         {
             title: 'Video',
             active: videoTab,
-            href: '/lms-video/list',
+            href: '/lms-video-list',
         },
         {
             title: 'Tips',
             active: tipsTab,
-            href: '/lms-tips',
+            href: '/lms-tips-list',
         },
         {
             title: 'Module',
