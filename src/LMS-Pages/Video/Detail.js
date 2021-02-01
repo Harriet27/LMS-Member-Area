@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVideo } from '../../Redux/Actions/contentAction';
+import { getVideoById } from '../../Redux/Actions/contentAction';
 import views from '../../Assets/Images/views.svg';
 import likethumb from '../../Assets/Images/like.svg';
 import likedthumb from '../../Assets/Images/liked.svg';
@@ -15,15 +15,16 @@ import moment from 'moment';
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import './Detail.css';
 
-const Detail = () => {
+const Detail = (query) => {
     const dispatch = useDispatch();
+
+    const videoById = useSelector(({ content }) => content.videoById);
+    const queryId = query.location.search.split('=')[1];
 
     useEffect(() => {
         document.title = 'LMS Video Playing';
-        dispatch(getVideo());
-    });
-
-    const videoList = useSelector((state) => state.content.videoList);
+        dispatch(getVideoById(queryId));
+    }, [dispatch, queryId]);
 
     const [likedState, setLikedState] = useState(false);
     const toggleLike = () => {
@@ -42,7 +43,7 @@ const Detail = () => {
     const saveIcon = savedState ? saved : save;
 
     const renderVideo = () => {
-        return videoList.slice(0,1).map((val,index) => {
+        return videoById.slice(0,1).map((val,index) => {
             return (
                 <div key={index}>
                     <video controls={true} className='playing-video'>

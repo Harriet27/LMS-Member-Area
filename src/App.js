@@ -102,9 +102,9 @@ function App () {
           <Route path='/lms-home' component={LMSHome} />
           <Route path='/lms-webinar' component={LMSWebinar} />
           <Route path='/lms-video-list' component={LMSVideoList} />
-          <Route path='/lms-video/detail' component={LMSVideoDetail} />
+          <Route path='/lms-video-detail' component={LMSVideoDetail} />
           <Route path='/lms-tips-list' component={LMSTipsList} />
-          <Route path='/lms-tips/detail' component={LMSTipsDetail} />
+          <Route path='/lms-tips-detail' component={LMSTipsDetail} />
           <Route path='/lms-module' component={LMSModule} />
           <Route path='/lms-group' component={LMSGroup} />
           <Route path='/lms-bonus' component={LMSBonus} />

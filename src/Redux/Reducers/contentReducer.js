@@ -1,11 +1,13 @@
 import {
     CONTENT_START,
     CONTENT_SUCCESS,
+    CONTENT_BY_ID,
     CONTENT_FAILED,
 } from '../type';
 
 const INITIAL_STATE = {
     videoList: [],
+    videoById: [],
     loading: false,
 };
 
@@ -20,6 +22,12 @@ export const contentReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 videoList: action.payload,
+                loading: false,
+            };
+        case CONTENT_BY_ID:
+            return {
+                ...state,
+                videoById: action.payload,
                 loading: false,
             };
         case CONTENT_FAILED:

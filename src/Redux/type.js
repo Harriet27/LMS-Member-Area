@@ -3,4 +3,5 @@ export const CHANGE_PRODUCT = "CHANGE_PRODUCT";
 
 export const CONTENT_START = 'CONTENT_START';
 export const CONTENT_SUCCESS = 'CONTENT_SUCCESS';
+export const CONTENT_BY_ID = 'CONTENT_BY_ID';
 export const CONTENT_FAILED = 'CONTENT_FAILED';

@@ -28,9 +28,9 @@ function Advertisement (props) {
         location.pathname === '/lms-home' || 
         location.pathname === '/lms-webinar' || 
         location.pathname === '/lms-video-list' || 
-        location.pathname === '/lms-video/detail' || 
+        location.pathname === '/lms-video-detail' || 
         location.pathname === '/lms-tips-list' || 
-        location.pathname === '/lms-tips/detail' || 
+        location.pathname === '/lms-tips-detail' || 
         location.pathname === '/lms-module' || 
         location.pathname === '/lms-group' || 
         location.pathname === '/lms-bonus' || 

@@ -24,23 +24,25 @@ const Terbaru = () => {
             let date = time.substring(0,10).split('-').join('');
             let ago = moment(date, "YYYYMMDD").fromNow();
             return (
-                <div key={index} className='videos-texts'>
-                    <img src='https://www.visme.co/wp-content/uploads/2020/02/i_Adventure-Youtube-Video-Cover_full.jpg' alt='live' className='videos-live' />
-                    <div className='videos-desc'>
-                        <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                        <div className='videos-summary'>
-                            <div className='videos-title'>
-                                <b>{val.filename}</b>
-                            </div>
-                            <div className='videos-mentor-name'>
-                                mentor name here
-                            </div>
-                            <div className='videos-countdown'>
-                                {ago}
+                <Link to={`/lms-video-detail?id=${val._id}`}>
+                    <div key={index} className='videos-texts'>
+                        <img src='https://www.visme.co/wp-content/uploads/2020/02/i_Adventure-Youtube-Video-Cover_full.jpg' alt='live' className='videos-live' />
+                        <div className='videos-desc'>
+                            <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
+                            <div className='videos-summary'>
+                                <div className='videos-title'>
+                                    <b>{val.filename}</b>
+                                </div>
+                                <div className='videos-mentor-name'>
+                                    mentor name here
+                                </div>
+                                <div className='videos-countdown'>
+                                    {ago}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </Link>
             );
         });
     };
@@ -256,15 +258,13 @@ const List = () => {
 
             {/* LISTS */}
             <div className='videos-section'>
-                <Link to='/lms-video/detail'>
-                    {tabList.map(({ id, content }) => {
-                        return active === id 
-                        ? 
-                        content 
-                        : 
-                        null
-                    })}
-                </Link>
+                {tabList.map(({ id, content }) => {
+                    return active === id 
+                    ? 
+                    content 
+                    : 
+                    null
+                })}
             </div>
         </div>
     );
