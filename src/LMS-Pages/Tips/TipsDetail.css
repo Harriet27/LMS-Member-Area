@@ -125,12 +125,29 @@
 .larunoblog-section {
     padding: 0px 35px;
 }
+.larunoblog-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
 .larunoblog-title {
     font-family: 'Rubik', sans-serif;
     font-size: x-large;
     text-align: center;
-    border-bottom: 2px solid #FF0000;
-    margin-top: 5px;
+    text-decoration: underline;
+    text-decoration-color: #FF0000;
+}
+.larunoblog-see-more {
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: #0000FF;
+}
+.larunoblog-see-more:hover {
+    color: #0000CA;
+    text-decoration: underline;
+    text-decoration-color: #0000FF;
 }
 .larunoblog-spotlight-renderer {
     margin-top: 30px;
@@ -141,9 +158,11 @@
     margin-bottom: 35px;
 }
 .larunoblog-spotlight-product-image {
+    cursor: pointer;
     width: 45%;
 }
 .larunoblog-spotlight-product-details {
+    cursor: pointer;
     margin-left: 20px;
 }
 .larunoblog-spotlight-product-name {

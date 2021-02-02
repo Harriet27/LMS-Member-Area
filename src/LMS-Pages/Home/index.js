@@ -8,15 +8,22 @@ import silver from '../../Assets/Images/silver.png';
 import gold from '../../Assets/Images/gold.png';
 import obsidian from '../../Assets/Images/obsidian.png';
 import diamond from '../../Assets/Images/diamond.png';
+import { useDispatch, useSelector } from 'react-redux';
 import './style.css';
+import { getProductById } from '../../Redux/Actions/productAction';
 
-const LMSHome = () => {
+const LMSHome = (query) => {
+    const dispatch = useDispatch();
+
+    const productById = useSelector(({ product }) => product.productById);
+    const queryId = query.location.search.split('=')[1];
+
     useEffect(() => {
         document.title = 'LMS Home';
-    }, []);
+        dispatch(getProductById(queryId));
+    }, [dispatch, queryId]);
 
-    const detail = [
-        {
+    const detail = {
             image: 'https://c0.wallpaperflare.com/preview/494/520/839/russia-moscow-sunset-mood.jpg',
             mentor: 'John Doe',
             title: 'BOE Business Master',
@@ -25,26 +32,25 @@ const LMSHome = () => {
                     [Goal of Product] <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut augue lectus. Quisque placerat est aliquam, auctor ex et, elementum ante. Curabitur metus orci, condimentum condimentum viverra a, ornare vel nunc. Etiam quis rhoncus mauris. Suspendisse hendrerit felis eget justo egestas, ornare blandit arcu imperdiet. Aliquam ac egestas orci, vel venenatis nunc. Maecenas dapibus purus vestibulum posuere auctor. Fusce scelerisque viverra faucibus. Suspendisse.
                 </span>
             ),
-        },
-    ];
+        };
+
 
     const renderDetail = () => {
-        return detail.map((val,index) => {
-            return (
-                <div>
-                    <img src={val.image} alt='product' className='product-image' />
-                    <div className='product-mentor'>
-                        Mentored by <b>{val.mentor}</b>
-                    </div>
-                    <div className='product-title'>
-                        <b>{val.title}</b>
-                    </div>
-                    <div className='product-description'>
-                        {val.description}
-                    </div>
+        return (
+            <div>
+                <div>{productById._id}</div>
+                <img src={detail.image} alt='product' className='product-image' />
+                <div className='product-mentor'>
+                    Mentored by <b>{detail.mentor}</b>
                 </div>
-            );
-        });
+                <div className='product-title'>
+                    <b>{detail.title}</b>
+                </div>
+                <div className='product-description'>
+                    {detail.description}
+                </div>
+            </div>
+        );
     };
 
     const leaderboardList = [

@@ -3,6 +3,7 @@ import moment from 'moment';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
 import './TipsList.css';
+import { Link } from 'react-router-dom';
 
 const author = 'https://i.pinimg.com/originals/e0/bc/5c/e0bc5cd4f1d7cff7116a325490b3010d.png';
 const ago = moment().utc('2019-12-04 12:00:24').local().startOf('seconds').fromNow();
@@ -262,13 +263,15 @@ const Tips = () => {
                     )}
                 </div>
                 <div className='tips-list'>
-                    {tabList.map(({ id, content }) => {
-                        return active === id
-                        ?
-                        content
-                        :
-                        null
-                    })}
+                    <Link to='/lms-tips-detail'>
+                        {tabList.map(({ id, content }) => {
+                            return active === id
+                            ?
+                            content
+                            :
+                            null
+                        })}
+                    </Link>
                 </div>
             </div>
         </div>

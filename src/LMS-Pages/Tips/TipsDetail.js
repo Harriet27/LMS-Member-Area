@@ -229,8 +229,13 @@ const TipsDetail = () => {
 
             {/* BLOG */}
             <div className='larunoblog-section'>
-                <div className='larunoblog-title'>
-                    Laruno's Blogs
+                <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:'5px'}}>
+                    <div className='larunoblog-title'>
+                        Laruno's Blogs
+                    </div>
+                    <div className='larunoblog-see-more'>
+                        See more
+                    </div>
                 </div>
                 <div className='larunoblog-spotlight-renderer'>
                     {renderBlogs()}

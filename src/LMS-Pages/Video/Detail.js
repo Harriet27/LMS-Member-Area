@@ -46,6 +46,7 @@ const Detail = (query) => {
         return videoById.slice(0,1).map((val,index) => {
             return (
                 <div key={index}>
+                    <div>{val._id}</div>
                     <video controls={true} className='playing-video'>
                         <source type='video/mp4' src={val.url} />
                     </video>
